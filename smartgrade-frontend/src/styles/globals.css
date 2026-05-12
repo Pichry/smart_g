@@ -1,0 +1,112 @@
+@keyframes scan-line { 0% { top: 0%; } 100% { top: 100%; } }
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(124,58,237,0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(124,58,237,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+}
+@keyframes corner-flash { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+@keyframes slide-up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes bounce-in { 0% { transform:scale(0.3); opacity:0; } 50% { transform:scale(1.05); } 70% { transform:scale(0.9); } 100% { transform:scale(1); opacity:1; } }
+@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+
+.animate-scan-line { animation: scan-line 2s linear infinite; }
+.animate-pulse-ring { animation: pulse-ring 2s cubic-bezier(0.455,0.03,0.515,0.955) infinite; }
+.animate-corner-flash { animation: corner-flash 1.5s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+.animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.68,-0.55,0.265,1.55) forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+/* ── Sidebar always dark (dark navy like landing page) ── */
+.app-sidebar {
+  background: #0f0a2e;
+  border-right: 1px solid rgba(124,58,237,0.25);
+}
+
+/* ── App content area always light/white ── */
+.app-shell {
+  background: #f8f7ff;
+  min-height: 100vh;
+}
+
+/* ── Cards: white with subtle purple border ── */
+.app-card {
+  background: #ffffff;
+  border: 1px solid #e9e4ff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 4px rgba(124,58,237,0.06);
+  transition: box-shadow 0.2s;
+}
+
+/* ── Inputs: white ── */
+.app-input {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.app-input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+}
+.app-input::placeholder { color: #9ca3af; }
+
+.skeleton {
+  background: linear-gradient(90deg, #f3f0ff 25%, #e9e4ff 50%, #f3f0ff 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:rgba(124,58,237,0.3); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:#7c3aed; }
+*:focus-visible { outline:2px solid #7c3aed; outline-offset:2px; }
+
+/* ────────────────────────────────────────────
+   Dark-mode translations for hardcoded Tailwind classes
+   used by ScanPage and a few other pages. These map
+   "looks fine on white" classes to dark equivalents,
+   so we don't have to rewrite every page.
+──────────────────────────────────────────── */
+.dark .bg-white                 { background-color: var(--color-bg) !important; }
+.dark .bg-gray-50               { background-color: rgba(255,255,255,0.03) !important; }
+.dark .bg-gray-100              { background-color: rgba(255,255,255,0.06) !important; }
+.dark .bg-gray-200              { background-color: rgba(255,255,255,0.10) !important; }
+.dark .bg-gray-50\/50           { background-color: rgba(255,255,255,0.02) !important; }
+
+.dark .text-gray-900            { color: var(--color-text-primary) !important; }
+.dark .text-gray-700            { color: rgba(241,238,255,0.85) !important; }
+.dark .text-gray-600            { color: rgba(241,238,255,0.70) !important; }
+.dark .text-gray-500            { color: var(--color-text-secondary) !important; }
+.dark .text-gray-400            { color: rgba(155,150,184,0.80) !important; }
+.dark .text-gray-300            { color: rgba(155,150,184,0.55) !important; }
+
+.dark .border-gray-100,
+.dark .border-gray-200          { border-color: var(--color-border) !important; }
+
+/* Keep the camera-preview block dark-on-dark gracefully */
+.dark .bg-gray-900              { background-color: #050316 !important; }
+
+/* Light-pastel status backgrounds get a stronger glow on dark */
+.dark .bg-green-50              { background-color: rgba(34,197,94,0.10) !important; }
+.dark .bg-purple-50             { background-color: rgba(124,58,237,0.15) !important; }
+.dark .bg-red-50                { background-color: rgba(239,68,68,0.10) !important; }
+.dark .bg-amber-50              { background-color: rgba(245,158,11,0.10) !important; }
+.dark .bg-purple-100            { background-color: rgba(124,58,237,0.20) !important; }
+.dark .bg-green-100             { background-color: rgba(34,197,94,0.18) !important; }
+.dark .bg-red-100               { background-color: rgba(239,68,68,0.18) !important; }
+.dark .bg-amber-100             { background-color: rgba(245,158,11,0.18) !important; }
+
+/* Hover states that were designed for white pages */
+.dark .hover\:bg-purple-100:hover { background-color: rgba(124,58,237,0.25) !important; }
+.dark .hover\:bg-purple-50:hover  { background-color: rgba(124,58,237,0.12) !important; }
+.dark .hover\:bg-red-50:hover     { background-color: rgba(239,68,68,0.12) !important; }
+.dark .hover\:border-red-300:hover{ border-color: rgba(239,68,68,0.5) !important; }
